@@ -1,0 +1,230 @@
+{
+  "info": {
+    "name": "Multi-Agent LLM Framework API",
+    "description": "Collection of API requests for testing all agents",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "List Agents",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/agents",
+          "host": ["{{base_url}}"],
+          "path": ["agents"]
+        }
+      }
+    },
+    {
+      "name": "ClickHouse Analyst - Count Users",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"How many users are in the database?\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/agents/clickhouse_analyst/query",
+          "host": ["{{base_url}}"],
+          "path": ["agents", "clickhouse_analyst", "query"]
+        }
+      }
+    },
+    {
+      "name": "ClickHouse Analyst - Top Products",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"What are the top 5 products by total sales amount?\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/agents/clickhouse_analyst/query",
+          "host": ["{{base_url}}"],
+          "path": ["agents", "clickhouse_analyst", "query"]
+        }
+      }
+    },
+    {
+      "name": "ClickHouse Chat - Conversational",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Tell me about the users in the database. How many are active?\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/agents/clickhouse_chat/query",
+          "host": ["{{base_url}}"],
+          "path": ["agents", "clickhouse_chat", "query"]
+        }
+      }
+    },
+    {
+      "name": "Log Analyst - Error Analysis",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Analyze the error logs from the last 24 hours. What patterns do you see?\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/agents/log_analyst/query",
+          "host": ["{{base_url}}"],
+          "path": ["agents", "log_analyst", "query"]
+        }
+      }
+    },
+    {
+      "name": "Log Analyst - Common Errors",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"What are the most common errors in the application logs?\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/agents/log_analyst/query",
+          "host": ["{{base_url}}"],
+          "path": ["agents", "log_analyst", "query"]
+        }
+      }
+    },
+    {
+      "name": "Financial Extractor - Trading Logs",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Extract all financial fields from the trading_logs table\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/agents/financial_extractor/query",
+          "host": ["{{base_url}}"],
+          "path": ["agents", "financial_extractor", "query"]
+        }
+      }
+    },
+    {
+      "name": "Financial Extractor - Transactions",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Extract all numerical financial fields from the transactions table\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/agents/financial_extractor/query",
+          "host": ["{{base_url}}"],
+          "path": ["agents", "financial_extractor", "query"]
+        }
+      }
+    },
+    {
+      "name": "Field Bucketing Analyst - Market Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Extract interesting fields from market_data and create bucketing strategies for each field\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/agents/field_bucketing_analyst/query",
+          "host": ["{{base_url}}"],
+          "path": ["agents", "field_bucketing_analyst", "query"]
+        }
+      }
+    },
+    {
+      "name": "Field Bucketing Analyst - Trading Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"Extract fields from trading_logs and suggest how to bucket the price and volume data\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/agents/field_bucketing_analyst/query",
+          "host": ["{{base_url}}"],
+          "path": ["agents", "field_bucketing_analyst", "query"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}
+

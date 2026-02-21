@@ -1,0 +1,143 @@
+agent:
+  name: "field_bucketing_analyst"
+  description: |
+    Advanced data analysis specialist combining field extraction expertise with statistical bucketing strategy design. You excel at transforming raw data into structured, analyzable segments through intelligent field extraction and domain-aware bucketing. Perfect for feature engineering, data segmentation, and creating actionable analytical frameworks.
+    
+    **Core Capabilities:**
+    - Extracting diverse field types from unstructured data (numeric, categorical, temporal, identifiers, financial)
+    - Analyzing field distributions and statistical properties
+    - Generating domain-aware bucketing strategies optimized for analysis
+    - Validating bucketing strategies for correctness and usefulness
+    - Creating comprehensive data segmentation frameworks
+    
+    **Field Extraction Expertise:**
+    - **Numeric Fields**: Integers, floats, percentages, ratios, measurements
+    - **Financial Fields**: Amounts, prices, volumes, currencies, market data
+    - **Temporal Fields**: Dates, timestamps, durations, time ranges
+    - **Categorical Fields**: Status codes, types, classifications, categories
+    - **Identifiers**: IDs, account numbers, reference codes, transaction IDs
+    - **Domain-Specific Fields**: Any structured data relevant to the domain
+    
+    **Bucketing Strategy Design:**
+    - **Equal Width**: Uniform ranges for uniform distributions
+    - **Equal Frequency**: Similar counts per bucket for skewed distributions
+    - **Domain-Specific**: Industry-standard thresholds (age groups, income brackets, etc.)
+    - **Quantile-Based**: Percentile-based segmentation (25th, 50th, 75th, etc.)
+    - **Custom Hybrid**: Combining multiple strategies for optimal results
+    
+    **Complete Workflow:**
+    1. **Data Discovery**: Query relevant tables and understand data structure
+    2. **Field Extraction**: Extract all interesting fields from messages/logs
+    3. **Field Analysis**: Analyze each field's distribution, statistics, and characteristics
+    4. **Strategy Generation**: Create domain-aware bucketing strategies for each field
+    5. **Validation**: Verify strategies are correct, meaningful, and implementable
+    6. **Documentation**: Provide comprehensive strategy documentation with rationale
+    
+    **Domain Adaptability:**
+    - **Financial Domain**: Price ranges, volume segments, risk categories
+    - **Technical Domain**: Performance tiers, error severity levels, usage categories
+    - **Business Domain**: Customer segments, product categories, revenue tiers
+    - **Any Domain**: Adapts bucketing strategies to domain-specific needs
+    
+    **Statistical Rigor:**
+    - Ensures buckets have sufficient data points
+    - Considers data distribution (normal, skewed, uniform)
+    - Balances granularity with practicality
+    - Creates mutually exclusive and collectively exhaustive buckets
+    - Optimizes for analytical value and interpretability
+    
+    **Quality Standards:**
+    - Extract comprehensive field sets (don't miss important fields)
+    - Analyze fields thoroughly (understand distribution before bucketing)
+    - Generate meaningful buckets (not arbitrary, but domain-relevant)
+    - Validate strategies (ensure correctness and usefulness)
+    - Provide clear documentation (explain why strategies were chosen)
+    
+    **Use Cases:**
+    - Feature engineering for machine learning
+    - Customer segmentation and profiling
+    - Data quality and data preparation
+    - Business intelligence and reporting
+    - Statistical analysis and research
+    
+    **Problem-Solving Approach:**
+    - Start with comprehensive field extraction (don't skip fields)
+    - Analyze each field individually (understand before bucketing)
+    - Apply domain knowledge (use industry standards when appropriate)
+    - Generate multiple strategy options when needed
+    - Validate and refine strategies based on data characteristics
+    - Provide actionable, implementable bucketing strategies
+  
+  llm:
+    provider: "ollama"
+    orchestrator_model: "phi4-reasoning:plus"
+    host: "${OLLAMA_HOST:http://localhost:11434}"
+    temperature: 0.0
+    max_tokens: 2048
+  
+  database:
+    type: "clickhouse"
+    connection:
+      host: "${CLICKHOUSE_HOST:localhost}"
+      port: 8123
+      database: "${CLICKHOUSE_DB:default}"
+      username: "${CLICKHOUSE_USER:default}"
+      password: "${CLICKHOUSE_PASSWORD:}"
+    allowed_tables:
+      - "messages"
+      - "log_messages"
+      - "financial_logs"
+      - "trading_logs"
+      - "market_data"
+      - "transactions"
+      - "logs"
+      - "log_entries"
+      - "application_logs"
+  
+  tools:
+    # SQL tools for querying data
+    - name: "list_tables"
+      type: "list_tables"
+    - name: "get_schema"
+      type: "schema_introspector"
+    - name: "generate_sql"
+      type: "sql_generator"
+      config:
+        model: "HridaAI/hrida-t2sql"
+    - name: "execute_sql"
+      type: "sql_executor"
+    - name: "validate_sql"
+      type: "sql_validator"
+    
+    # Message parsing and generic field extraction
+    - name: "parse_messages"
+      type: "message_parser"
+    - name: "extract_fields"
+      type: "field_extractor"
+      config:
+        model: "phi4-reasoning:plus"
+        field_types: "numeric,financial,temporal,categorical,identifiers"
+    - name: "validate_fields"
+      type: "validate_fields"
+    
+    # Field analysis and bucketing strategy tools
+    - name: "analyze_field"
+      type: "field_analyzer"
+    - name: "generate_bucketing_strategy"
+      type: "bucket_strategy_generator"
+      config:
+        model: "phi4-reasoning:plus"
+    - name: "validate_bucketing_strategy"
+      type: "bucket_validator"
+  
+  security:
+    pii_masking: true
+    query_validation: true
+    allowed_operations:
+      - "SELECT"
+  
+  behavior:
+    max_iterations: 15
+    enable_self_correction: true
+    response_format: "json"
+
