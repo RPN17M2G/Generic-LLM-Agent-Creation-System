@@ -1,6 +1,6 @@
 # Multi-Agent LLM Framework
 
-A generic, extensible framework for dynamically creating and managing agentic LLMs with tools, specializations, and capabilities. Supports multiple databases, YAML-based configuration, and follows SOLID principles.
+A generic, extensible framework for dynamically creating and managing agentic LLMs with tools, specializations, and capabilities. Supports multiple databases, YAML-based configuration.
 
 ## Features
 
