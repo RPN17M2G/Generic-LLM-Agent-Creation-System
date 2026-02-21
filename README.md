@@ -228,11 +228,3 @@ The framework implements multi-layer security:
 - **Retry Logic**: Exponential backoff for transient failures
 - **Async Support**: Ready for async operations (structure in place)
 
-## License
-
-[Your License Here]
-
-## Contributing
-
-[Contributing Guidelines Here]
-
