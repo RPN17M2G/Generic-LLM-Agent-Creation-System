@@ -6,15 +6,9 @@ A generic, extensible framework for dynamically creating and managing agentic LL
 
 - **Dynamic Agent Creation**: Create agents from YAML configurations
 - **Multi-Database Support**: ClickHouse, MITRE (and extensible for others)
-- **Four Core Capabilities**:
-  1. SQL Query Generation and Execution (ClickHouse and generic SQL)
-  2. Log Analysis from Databases
-  3. Financial Field Extraction from Messages
-  4. Domain-Aware Bucketing Strategies
 - **YAML Configuration**: Easy agent and capability definition
 - **Ollama Integration**: Full support for Ollama LLM models
 - **Security**: Multi-layer security with PII masking, query validation, and access control
-- **SOLID Architecture**: Clean, extensible, maintainable codebase
 
 ## Architecture
 
