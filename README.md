@@ -24,11 +24,8 @@ A generic, extensible framework for dynamically creating and managing agentic LL
 
 ### Design Principles
 
-- **SOLID Compliance**: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
-- **Plugin Architecture**: All extensions are plugins
+- **Plugin Architecture**: All extensions are plugins to the core of the system.
 - **YAML-First**: Agents defined in YAML for easy creation/modification
-- **Composition over Inheritance**: Capabilities compose tools, agents compose capabilities
-- **Interface-Based**: All components communicate via interfaces
 
 ## Installation
 
